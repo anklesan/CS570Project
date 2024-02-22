@@ -101,7 +101,14 @@
             than EnuM. Another noted difference between the two is AML is able to achieve a similar energy efficiency to EnuM after only evaluating around 7% of the
             possible configurations while EnuM needs to evaluate all of the possible configurations to achieve that energy efficiency.
         </p>
-        <p> &nbsp; &nbsp; &nbsp; &nbsp; </p>
+        <p> &nbsp; &nbsp; &nbsp; &nbsp; Greathouse <i>et al.</i> [2] take a different approach and use machine learning (ML) to predict an applications performance and
+            power on a range of heterogeneous systems. The author's begin the process by creating the dataset to be used by the model by running various applications on
+            different combinations of hardware and storing that data. Using a fully connected neural network with a linear input layer and sigmoid functions for the hidden
+            and output layers the kernels are trained and clustered. Within the clusters the authrors set it to pick the kernel with the highest value as the representative
+            for that cluster. The model is then used with an application to predict and a cluster is picked basied on which cluster the application is closest to and the scaling
+            curve designed by the authors using the collected data is used to predict performance or power of the kernel depending on desired configuration. It is determined
+            that the use of the designed system is very effective and does not require heavy computational effort. The authors tested the accuracy of their model and found it to have
+            only 15% error rate in performance predictions and less than 10% error rate for power. </p>
     
 
     <h3><b>4 &nbsp; Results</b></p></h3>
