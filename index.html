@@ -93,7 +93,13 @@
             Enumeration and Measurements (EnuM) technique in comparison to their own when evaluating their method which they call AI heuristics with machine 
             learning (AML). EnuM is also known as brute-force search and it evaluates every option available before making a decision based on those results. The 
             authors aim to determine a near optimal system configuration using their proposed method. Their proposed method uses the heuristic search as a guide 
-            through the parameter space and uses simulated annealing (SA) to conduct the parameter space exploration. The authors then use decision tree regression, 
+            through the parameter space and uses simulated annealing (SA) to conduct the parameter space exploration. The outline of this approach can be seen below in
+            Figure 1:
+        </p>
+        <center><img src="ECE570_IMG1.png" alt="Memeti et al. approach" style="width:50%;height:50%;"></center>
+        <p><center>Figure 1: Memeti <i>et al.</i> [1] AML design.</center></p>
+        <p>
+            &nbsp; &nbsp; &nbsp; &nbsp; The authors then use decision tree regression, 
             a supervised machine learning model, to evaluate the system configuration. The results of their experiment shows that AML is more than 1300 times faster
             than EnuM. Another noted difference between the two is AML is able to achieve a similar energy efficiency to EnuM after only evaluating around 7% of the
             possible configurations while EnuM needs to evaluate all of the possible configurations to achieve that energy efficiency.
