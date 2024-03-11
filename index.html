@@ -38,6 +38,18 @@
             border-radius: 10px;
         }
 
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1px;
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+
+        .paragraph {
+            text-align: center;
+        }
+
         table, th, td {
             border: 1px solid black;
             border-collapse: collapse;
@@ -134,16 +146,21 @@
             different combinations of hardware and storing that data. Using a fully connected neural network with a linear input layer and sigmoid functions for the hidden
             and output layers the kernels are trained and clustered as can be seen in Figure 2. 
         </p>
-        <center><img src="ECE570_IMG3.png" alt="Greathouse et al. approach" style="width:50%;height:50%;"></center>
-        <p><center>Figure 2: Greathouse <i>et al.</i> [1] clustering setup. Each kernel produces a scaling<br> curve and similar kernels are grouped together into clusters.</center></p>
+
+        <center><img src="ECE570_IMG3.png" alt="Greathouse et al. approach" style="width:40%;height:40%;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="ECE570_IMG4.png" alt="Greathouse et al. approach closeup" style="width:40%;height:40%;"></center>
+        <div class="container">
+            <p class="paragraph">Figure 2: Greathouse <i>et al.</i> [1] clustering setup. <br> Each kernel produces a scaling curve and similar <br> kernels are grouped together into clusters.</p>
+            <p class="paragraph">Figure 3: Greathouse <i>et al.</i> [1] kernel example closeup</p>
+            
+        </div>
         <p>
             &nbsp; &nbsp; &nbsp; &nbsp; Within the clusters the authors set it to pick the kernel with the highest value as the representative
             for that cluster. The model is then used with an application to predict and a cluster is picked based on which cluster the application is closest to and the scaling
             curve designed by the authors using the collected data is used to predict performance or power of the kernel depending on desired configuration. This model is organized into
-            the overall model setup seen in Figure 3:
+            the overall model setup seen in Figure 4:
         </p>
         <center><img src="ECE570_IMG2.png" alt="Greathouse et al. approach overview" style="width:40%;height:40%;"></center>
-        <p><center>Figure 3: Greathouse <i>et al.</i> [1] overall model setup.</center></p>
+        <p><center>Figure 4: Greathouse <i>et al.</i> [1] overall model setup.</center></p>
         <p>
             &nbsp; &nbsp; &nbsp; &nbsp; It is determined that the use of the designed system is very effective and does not require heavy computational effort. The authors tested the accuracy of their model and found it to have
             only 15% error rate in performance predictions and less than 10% error rate for power. </p>
