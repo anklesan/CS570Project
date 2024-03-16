@@ -82,7 +82,25 @@
     </section>
 
     <section>
-        <h3><p><b>1 &nbsp; Introduction</b></p></h3>
+        <h3><p><b>0 &nbsp; Overview</b></p></h3>
+        <ul>
+            <a href="#intro"><li>Introduction</li></a>
+            <a href="#back"><li>Background</li></a>
+            <ul>
+                <a href="#hc"><li>Heterogeneous Computing</li></a>
+                <a href="#ai"><li>Artificial Intelligence</li></a>
+            </ul>
+            <a href="#IANDF"><li>Infrastructure and Frameworks</li></a>
+            <a href="#HCforDL"><li>Heterogeneous Computing for Deep Learning</li></a>
+            <a href="#AIforHC"><li>AI for Heterogeneous Computing</li></a>
+            <a href="#results"><li>Results</li></a>
+            <a href="#con"><li>Conclusion and Future Work</li></a>
+            <a href="#ref"><li>References</li></a>
+        </ul>
+    </section>
+
+    <section>
+        <p id="intro"><h3><p><b>1 &nbsp; Introduction</b></p></h3></p>
         <p> &nbsp; &nbsp; &nbsp; &nbsp;The advancement of artificial intelligence (AI) has increased the use and development of heterogeneous 
             computing with the search to find new ways to increase efficiency. This survey collected information regarding heterogeneous 
             computing in an AI context. Our project sought to gather information on the different ways artificial intelligence has influenced 
@@ -98,8 +116,8 @@
             a meaningful way.</p>
     
 
-    <h3><b>2 &nbsp; Background</b></p></h3>
-    <b>2.1 &nbsp;What is Heterogeneous Computing?</b>
+    <p id="back"><h3><b>2 &nbsp; Background</b></p></h3></p>
+    <p id="hc"><b>2.1 &nbsp;What is Heterogeneous Computing?</b></p>
     <p> &nbsp; &nbsp; &nbsp; &nbsp; Heterogeneous computing is a computing architecture that incorporates multiple types of processors or cores within a single system,
          each specialized for different computational tasks. This approach leverages the strengths of various processing units—such as CPUs, GPUs, DSPs, and FPGAs—to optimize performance, 
          energy efficiency, and computational speed. By allocating tasks to the most suitable processor type, heterogeneous computing systems can handle a wide range of applications more effectively than homogeneous 
@@ -112,7 +130,7 @@
         it was not only widely adopted by research but it was also used to develop many common applications such as Adobe, Ansys, Mathworks, and Wolfram Mathematica.
     </p>
 
-    <b>2.2 &nbsp; Why is it relevant to Artificial intelligence?</b>
+    <p id="ai"><b>2.2 &nbsp; Why is it relevant to Artificial intelligence?</b></p>
     <p> &nbsp; &nbsp; &nbsp; &nbsp; Heterogeneous computing is relevant for AI due to its ability to enhance performance, improve energy efficiency, and provide flexibility for diverse AI workloads. 
         By leveraging various types of processors—such as CPUs for general tasks, GPUs for parallel processing, 
         and specialized accelerators for specific AI functions—heterogeneous computing systems can efficiently handle the intensive computational demands of training and deploying AI models. 
@@ -120,7 +138,31 @@
         <p>
         </p>
 
-    <h3><b>3 &nbsp; Related Literature</b></p></h3>
+    <p id="IANDF"><h3><b>3 &nbsp; Infrastructure and Frameworks</b></h3></p>
+    <p>
+
+    </p>
+
+    <p id="HCforDL"><h3><b>4 &nbsp; Heterogeneous Computing for Deep Learning</b></p></h3></p>
+
+            <p> &nbsp; &nbsp; &nbsp; &nbsp; Malita <i>et al.</i> [3] explores the challenges and advancements in hardware acceleration for deep learning. It details the computational components of Deep Neural Networks (DNNs), 
+                reviews state-of-the-art hardware solutions including Intel's MIC, Nvidia's GPUs, and Google's TPUs. 
+            </p>
+            <p>Computational Components of DNNs: They outline the key computational components of Deep Neural Networks (DNNs), including fully connected layers, 
+                convolutional layers, pooling layers, and softmax layers. There is significant computational intensity of these components and they underscore 
+                the importance of efficient acceleration for optimal performance in deep learning tasks. By identifying and understanding these components, researchers and engineers can develop hardware architectures that specifically target the computational </p>
+            <p>State of the Art Hardware Solutions: They have reviewed various state-of-the-art hardware solutions commonly used for accelerating deep learning tasks. There is a discussion of various architectures such as Intel's Many Integrated Core (MIC) processors, Nvidia's Graphics Processing Units (GPUs), 
+                and Google's Tensor Processing Units (TPUs). This discussion covers performance characteristics, energy efficiency, and limitations of each architecture in the context of deep learning applications. They conclude that by examining the strengths and weaknesses of these hardware solutions, 
+                researchers can make informed decisions when selecting or designing hardware platforms for deep learning tasks.</p>
+            <p>Limitations of Specific ASICs like TPU: They delve into the limitations of specific Application-Specific Integrated Circuits (ASICs), focusing on Google's Tensor Processing Units (TPUs). While TPUs offer significant computational power, they lack the flexibility to efficiently 
+                support the diverse computational demands of different DNNs. The chapter [3] highlights issues related to flexibility, resource utilization, memory hierarchy, and architectural suitability. By understanding these limitations, researchers can explore alternative approaches or develop 
+                strategies to mitigate the challenges associated with specific ASICs like TPUs.</p>
+            <p>Conclusion and Future Directions: The authors summarize the key findings of the chapter and offer insights into potential avenues for future research and development. They emphasize that there is a need for innovative architectural designs that can adapt to the evolving landscape of deep learning while 
+                optimizing for performance and energy efficiency. The chapter also discusses emerging trends in hardware acceleration for deep learning, such as the integration of specialized hardware units for specific tasks and the exploration of novel memory hierarchy designs. 
+            </p>
+
+    <p id="AIforHC"><h3><b>5 &nbsp; Artificial Intelligence for Heterogeneous Computing</b></h3></p>
+    <p>
         <p> &nbsp; &nbsp; &nbsp; &nbsp; Memeti <i>et al.</i> [1] bring forward an approach to heterogeneous computing that utilizes AI heuristic search
             techniques in combination with the use of machine learning to optimize the use of the heterogeneous system. The authors reference the 
             Enumeration and Measurements (EnuM) technique in comparison to their own when evaluating their method which they call AI heuristics with machine 
@@ -161,29 +203,16 @@
             &nbsp; &nbsp; &nbsp; &nbsp; It is determined that the use of the designed system is very effective and does not require heavy computational effort. The authors tested the accuracy of their model and found it to have
             only 15% error rate in performance predictions and less than 10% error rate for power. </p>
     
-            <p> &nbsp; &nbsp; &nbsp; &nbsp; Malita <i>et al.</i> [3] explores the challenges and advancements in hardware acceleration for deep learning. It details the computational components of Deep Neural Networks (DNNs), 
-                reviews state-of-the-art hardware solutions including Intel's MIC, Nvidia's GPUs, and Google's TPUs. 
-            </p>
-            <p>Computational Components of DNNs: They outline the key computational components of Deep Neural Networks (DNNs), including fully connected layers, 
-                convolutional layers, pooling layers, and softmax layers. There is significant computational intensity of these components and they underscore 
-                the importance of efficient acceleration for optimal performance in deep learning tasks. By identifying and understanding these components, researchers and engineers can develop hardware architectures that specifically target the computational </p>
-            <p>State of the Art Hardware Solutions: They have reviewed various state-of-the-art hardware solutions commonly used for accelerating deep learning tasks. There is a discussion of various architectures such as Intel's Many Integrated Core (MIC) processors, Nvidia's Graphics Processing Units (GPUs), 
-                and Google's Tensor Processing Units (TPUs). This discussion covers performance characteristics, energy efficiency, and limitations of each architecture in the context of deep learning applications. They conclude that by examining the strengths and weaknesses of these hardware solutions, 
-                researchers can make informed decisions when selecting or designing hardware platforms for deep learning tasks.</p>
-            <p>Limitations of Specific ASICs like TPU: They delve into the limitations of specific Application-Specific Integrated Circuits (ASICs), focusing on Google's Tensor Processing Units (TPUs). While TPUs offer significant computational power, they lack the flexibility to efficiently 
-                support the diverse computational demands of different DNNs. The chapter [3] highlights issues related to flexibility, resource utilization, memory hierarchy, and architectural suitability. By understanding these limitations, researchers can explore alternative approaches or develop 
-                strategies to mitigate the challenges associated with specific ASICs like TPUs.</p>
-            <p>Conclusion and Future Directions: The authors summarize the key findings of the chapter and offer insights into potential avenues for future research and development. They emphasize that there is a need for innovative architectural designs that can adapt to the evolving landscape of deep learning while 
-                optimizing for performance and energy efficiency. The chapter also discusses emerging trends in hardware acceleration for deep learning, such as the integration of specialized hardware units for specific tasks and the exploration of novel memory hierarchy designs. 
-            </p>
-    <h3><b>4 &nbsp; Results</b></p></h3>
+    </p>
+
+    <p id="results"><h3><b>6 &nbsp; Results</b></p></h3></p>
         <p> &nbsp; &nbsp; &nbsp; &nbsp; The survey has yielded various different approaches to this topic that allow for improvement on implementations through the use
             of AI applications. Each approach has had various purposes to attempt to improve upon the efficiency in one way or another. Memeti <i>et al.</i> [1] focused on the 
             optimization of the systems configuration while Greathouse <i>et al.</i> [2] focused on the prediction of performance and energy consumption to reduce time and energy
             costs in industry by reducing the need for physical tests or simulations.
         </p>
     
-    <h3><p><b>5 &nbsp; Conclusion and Future Work</b></p></h3>
+    <p id="con"><h3><p><b>7 &nbsp; Conclusion and Future Work</b></p></h3></p>
     <p> &nbsp; &nbsp; &nbsp; &nbsp; There are many different approaches and implementations regarding heterogeneous computing specifically in an AI context and the expansive number
         of possibilities are evident through the sources included in this survey. Heterogeneous computing can be incredibly useful for AI just as AI can also be extremely helpful
         in the configuration or prediction of heterogeneous systems and their behavior. Throughout the course of the term, our team seeks to continue conduct a thorough survey on 
@@ -247,15 +276,21 @@
     </section>
 
     <section>
-        <p><b><u>References</u></b></p>
+        <p id="ref"><b><u>References</u></b></p>
         <p>
             <ol>
-                <li>Memeti, S., Pllana, S. Optimization of heterogeneous systems with AI planning heuristics and machine learning: a performance and energy aware approach. Computing 103, 2943-2966 (2021). https://doi.org/10.1007/s00607-021-01017-6</li>
-                <li>J. L. Greathouse and G. H. Loh, "Machine Learning for Performance and Power Modeling of Heterogeneous Systems," 2018 IEEE/ACM International Conference on Computer-Aided Design (ICCAD), San Diego, CA, USA, 2018, pp. 1-6, doi: 10.1145/3240765.3243484. </li>
-                <li>Mihaela Maliţa, George Vlǎduţ Popescu, & Ştefan, G. M. (2019). Heterogeneous Computing System for Deep Learning. Studies in Computational Intelligence, 287-319. https://doi.org/10.1007/978-3-030-31756-0_10</li>
-                <li>CUDA FAQ. NVIDIA Developer. (n.d.). https://developer.nvidia.com/cuda-faq </li>
-                <li>CUDA in Action - Research & Apps. NVIDIA Developer. (n.d.). https://developer.nvidia.com/cuda-action-research-apps</li>
-                <li>AMD Fusion APU era begins. Advanced Micro Devices, Inc. (2011, January 4). https://ir.amd.com/news-events/press-releases/detail/168/amd-fusion-apu-era-begins </li>
+                <li>Memeti, S., Pllana, S. <i>Optimization of heterogeneous systems with AI planning heuristics and machine learning: a performance and energy aware approach.</i> Computing 103, 2943-2966 (2021). https://doi.org/10.1007/s00607-021-01017-6</li>
+                <li>J. L. Greathouse and G. H. Loh, <i>Machine Learning for Performance and Power Modeling of Heterogeneous Systems,</i> 2018 IEEE/ACM International Conference on Computer-Aided Design (ICCAD), San Diego, CA, USA, 2018, pp. 1-6, doi: 10.1145/3240765.3243484. </li>
+                <li>Mihaela Maliţa, George Vlǎduţ Popescu, & Ştefan, G. M. (2019). <i>Heterogeneous Computing System for Deep Learning.</i> Studies in Computational Intelligence, 287-319. https://doi.org/10.1007/978-3-030-31756-0_10</li>
+                <li><i>CUDA FAQ.</i> NVIDIA Developer. (n.d.). https://developer.nvidia.com/cuda-faq </li>
+                <li><i>CUDA in Action - Research & Apps.</i> NVIDIA Developer. (n.d.). https://developer.nvidia.com/cuda-action-research-apps</li>
+                <li>Dasgupta, S. (2024, January 2). <i>AI drives the software-defined heterogeneous computing era. Energy-Efficient AI Processors and Acceleration.</i> https://www.edgecortix.com/en/blog/ai-drives-the-software-defined-heterogeneous-computing-era#:~:text=Heterogeneous%20Computing%20in%20an%20AI%20Context&text=Heterogeneity%20can%20involve%20different%20instruction,%2C%20cost%2C%20and%20greater%20flexibility</li>
+                <li><i>Specifications | one</i>API. (n.d.). OneAPI.io. https://www.oneapi.io/spec/</li>
+                <li><i>Accelerating Machine Learning with OpenCL.</i> (2022, May 11). The Khronos Group. https://www.khronos.org/events/accelerating-machine-learning-with-opencl</li>
+                <li>Liu, X., Ounifi, H.-A., Gherbi, A., Li, W., & Cheriet, M. (2019). A hybrid GPU-FPGA based design methodology for enhancing machine learning applications performance. <i>Journal of Ambient Intelligence and Humanized Computing,</i> 11(6), 2309-2323. https://doi.org/10.1007/s12652-019-01357-4</li>
+                <li><i>Heterogeneous System Architecture.</i> (2023, December 29). Wikipedia. https://en.wikipedia.org/wiki/Heterogeneous_System_Architecture#</li>
+                <li><i>Deep Learning Software.</i> (n.d.). NVIDIA Developer. https://developer.nvidia.com/deep-learning-software</li>
+                <li>Martínez, P. A., Peccerillo, B., Bartolini, S., García, J. M., & Bernabé, G. (2022). Applying Intel's oneAPI to a machine learning case study. <i>Concurrency and Computation: Practice and Experience,</i> 34(13). https://doi.org/10.1002/cpe.6917</li>
             </ol>
         </p>
 
