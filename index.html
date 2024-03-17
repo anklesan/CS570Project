@@ -118,6 +118,10 @@
          energy efficiency, and computational speed. By allocating tasks to the most suitable processor type, heterogeneous computing systems can handle a wide range of applications more effectively than homogeneous 
          systems.
     </p>
+
+    <center><img src="ECE570_IMG5.png" alt="heterogeneous computing example" style="width:50%;height:50%;"></center>
+    <p><center>Figure 1: Overview of Heterogeneous Computing.</center></p>
+
     <p>
         &nbsp; &nbsp; &nbsp; &nbsp; Heterogeneous computing for Artificial Intelligence became more prominent in the late 2000's early 2010's with the release of NVIDIA's 
         CUDA (Compute Unified Device Architecture) in 2006. According to NVIDIA [4], they developed CUDA to make an impact on the computing performance through the use of 
@@ -135,33 +139,56 @@
         </p>
 
     <p id="IANDF"><h3><b>3 &nbsp; Infrastructure and Frameworks</b></h3></p>
+    <u><p>Key Architectures and Frameworks</p></u>
+    <p><ul>
+        <li><b>HSA </b>(Heterogeneous System Architecture) 
+            <ul>
+                <li>Enables efficient hardware acceleration by integrating central processing units (CPUs) and graphics processing units (GPUs)
+                    for seamless computation.</li>
+            </ul>
+        </li>
+        <li><b>CUDA (Compute Unified Device Architecture)</b> 
+            <ul>
+                <li>NVIDIA's platform for general-purpose graphics processing unit (GPGPU) which was pivotal in AI and deep learning.</li>
+            </ul>
+        </li>
+        <li><b>OpenCL (Open Computing Language):</b> Open standard for cross-platform programming across CPUs, GPUs, and more, ensuring flexibiility and broad applicability.</li>
+        <li><b>TPU Architecture (Tensor Processing Unit):</b> Google's custom-designed processors optimized for TensorFlow operations, significantly accelerating deep learning computations. </li>
+        <li><b>ROCm (Radeon Open Compute):</b> AMD's open source GPU computing framework.</li>
+        <li><b>Intel oneAPI:</b> A unified programming model by Intel to streamline development across CPUs, GPUs, field programmable gate arrays (FPGAs), and AI accelerators.</li>
+    </ul></p>
     <b>3.1 &nbsp;HSA (Heterogeneous System Architecture)</b>
-    <p>
-
+    <p> &nbsp; &nbsp; &nbsp; &nbsp; Heterogeneous System Architecture (HSA) integrates both central processing units (CPUs) and graphics processing units (GPUs) 
+        for shared memory and tasks. HSA is led by the HSA foundation which includes both AMD and ARM. HSA reduces latency between compute devices, simplifies 
+        programming, and enchances the execution performance of programming languages and models like CUDA and OpenCL. HSA enables direct GPU floating point 
+        calculations without separate scheduling.
     </p>
 
+    <center><img src="ECE570_IMG6.png" alt="HSA" style="width:70%;height:70%;"></center>
+    <p><center>Figure 2: Overview of Heterogeneous System Architecture.</center></p>
+
     <b>3.2 &nbsp;CUDA (Compute Unified Device Architecture)</b>
-    <p>
+    <p> &nbsp; &nbsp; &nbsp; &nbsp; 
 
     </p>
 
     <b>3.3 &nbsp;OpenCL (Open Computing Language)</b>
-    <p>
+    <p> &nbsp; &nbsp; &nbsp; &nbsp; 
 
     </p>
 
     <b>3.4 &nbsp;TPU Architecture (Tensor Processing Unit)</b>
-    <p>
+    <p> &nbsp; &nbsp; &nbsp; &nbsp; 
 
     </p>
 
     <b>3.5 &nbsp;ROCm (Radeon Open Compute)</b>
-    <p>
+    <p> &nbsp; &nbsp; &nbsp; &nbsp; 
 
     </p>
 
     <b>3.6 &nbsp;Intel oneAPI</b>
-    <p>
+    <p> &nbsp; &nbsp; &nbsp; &nbsp; 
 
     </p>
 
