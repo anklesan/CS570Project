@@ -199,24 +199,34 @@
     <p><center>Figure 5: Overview of CUDA uses.</center></p>
 
     <b>3.2.2 &nbsp;OpenCL (Open Computing Language)</b>
-    <p> &nbsp; &nbsp; &nbsp; &nbsp; 
-
+    <p> &nbsp; &nbsp; &nbsp; &nbsp; OpenCL is a cross-platform framework that enables the execution of code across different hardware platforms. 
+        It supports heterogeneous systems by working with various computing devices including CPUs, GPUs, DSPs, and FPGAs. Another feature of 
+        OpenCL is the write once, run anywhere approach that means that programs written in OpenCL can run efficiently across multiple hardware architectures 
+        which support the OpenCL standard. Below you can see an overview of OpenCL.
     </p>
 
-    <b>3.3 &nbsp;TPU Architecture (Tensor Processing Unit)</b>
-    <p> &nbsp; &nbsp; &nbsp; &nbsp; 
+    <center><img src="ECE570_IMG10.png" alt="HSA" style="width:50%;height:50%;"></center>
+    <p><center>Figure 6: Overview of OpenCL.</center></p>
 
+    <center><img src="ECE570_IMG11.png" alt="HSA" style="width:50%;height:50%;"></center>
+    <p><center>Figure 7: Overview of OpenCL common steps and compatable compilers.</center></p>
+
+    <b>3.3 &nbsp;Intel oneAPI</b>
+    <p> &nbsp; &nbsp; &nbsp; &nbsp; Intel oneAPI is a unified programming model designed to streamline development across Intel's diverse hardware 
+        (CPUs, GPUs, FPGAs, AI accelerators). The core language used is DPC++ which is based on ISO C++ and SYCL standards. SYCL is a cross-platform abstraction layer 
+        that allows algorithms to switch between hardware accelerators such as CPUs, GPUs, and GPGAs. DPC++ is aimed at leveraging the parallel computing 
+        potential of Intel's hardware.
+    </p>
+    <p><center><b>DPC++ = C++ + SYCL + community extensions</b></center></p>
+
+    <p> &nbsp; &nbsp; &nbsp; &nbsp; The workload categorization classifies workloads into scalar, vector, matrix, and spatial domains to optimize 
+        computing across different Intell processors. Currently, Intel is pitching oneAPI as a viable CUDA alternative and there is a growing trend 
+        of migrating to oneAPI for its promise of eliminating vendor lock-in and fostering a diverse computing environment. There are performance gains 
+        such that adoptors of oneAPI often report enhanced performance compared to previous implementations.
     </p>
 
-    <b>3.4 &nbsp;ROCm (Radeon Open Compute)</b>
-    <p> &nbsp; &nbsp; &nbsp; &nbsp; 
-
-    </p>
-
-    <b>3.5 &nbsp;Intel oneAPI</b>
-    <p> &nbsp; &nbsp; &nbsp; &nbsp; 
-
-    </p>
+    <center><img src="ECE570_IMG12.png" alt="HSA" style="width:40%;height:40%;"></center>
+    <p><center>Figure 7: Overview of Intel oneAPI.</center></p>
 
     <p id="HCforDL"><h3><b>4 &nbsp; Heterogeneous Computing for Deep Learning</b></p></h3></p>
 
