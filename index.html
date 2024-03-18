@@ -167,27 +167,53 @@
     <center><img src="ECE570_IMG6.png" alt="HSA" style="width:70%;height:70%;"></center>
     <p><center>Figure 2: Overview of Heterogeneous System Architecture.</center></p>
 
-    <b>3.2 &nbsp;CUDA (Compute Unified Device Architecture)</b>
+
+    <b>3.2 &nbsp; Programming Models for Heterogeneous Computing</b>
+    <p> &nbsp; &nbsp; &nbsp; &nbsp; Shown in the list below are the common programming models for heterogeneous computing going by level 
+        of abstraction.
+        <ul>
+            <li>CUDA: is a NVIDIA proprietary</li>
+            <li>OpenCL: Open standard and is functionally portable across multi-cores</li>
+            <li>OpenACC: High-level and pragma-based</li>
+            <li>Different libraries, programming models, and DSLs for different domains</li>
+        </ul>
+        It is possible to use either a mix of programming models such as one or several models for CPUs with OpenMP or one or several models 
+        for GPUs instead with CUDA. It is also possible to just use a single unified programming model rather than mixing different ones. The figure 
+        below shows the difference in level between various popular programming models.
+    </p>
+
+    <center><img src="ECE570_IMG9.png" alt="HSA" style="width:50%;height:50%;"></center>
+    <p><center>Figure 3: Low versus high level programming models.</center></p>
+
+    <b>3.2.1 &nbsp;CUDA (Compute Unified Device Architecture)</b>
+    <p> &nbsp; &nbsp; &nbsp; &nbsp; CUDA is NVIDIA's programming platform for GPGPUs that is designed for heterogeneous computing. CUDA is 
+        designed so that some of the functions are run on the CPU while others are run on the GPU allowing for acceleration in the process. 
+        Programs are typically written in C or C++ with annotations for the GPU executution. A typical CUDA program flow can be seen in the 
+        figure below.
+    </p>
+
+    <center><img src="ECE570_IMG7.png" alt="HSA" style="width:50%;height:50%;"></center>
+    <p><center>Figure 4: Typical CUDA program flow.</center></p>
+
+    <center><img src="ECE570_IMG8.png" alt="HSA" style="width:50%;height:50%;"></center>
+    <p><center>Figure 5: Overview of CUDA uses.</center></p>
+
+    <b>3.2.2 &nbsp;OpenCL (Open Computing Language)</b>
     <p> &nbsp; &nbsp; &nbsp; &nbsp; 
 
     </p>
 
-    <b>3.3 &nbsp;OpenCL (Open Computing Language)</b>
+    <b>3.3 &nbsp;TPU Architecture (Tensor Processing Unit)</b>
     <p> &nbsp; &nbsp; &nbsp; &nbsp; 
 
     </p>
 
-    <b>3.4 &nbsp;TPU Architecture (Tensor Processing Unit)</b>
+    <b>3.4 &nbsp;ROCm (Radeon Open Compute)</b>
     <p> &nbsp; &nbsp; &nbsp; &nbsp; 
 
     </p>
 
-    <b>3.5 &nbsp;ROCm (Radeon Open Compute)</b>
-    <p> &nbsp; &nbsp; &nbsp; &nbsp; 
-
-    </p>
-
-    <b>3.6 &nbsp;Intel oneAPI</b>
+    <b>3.5 &nbsp;Intel oneAPI</b>
     <p> &nbsp; &nbsp; &nbsp; &nbsp; 
 
     </p>
