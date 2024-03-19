@@ -252,89 +252,73 @@
         <li><strong>Validation of Computed Results:</strong> The integrity of results is verified on CPU memory to ensure accuracy. Computed results on CPU memory are validated using comparison operations, typically occurring after the execution of primitives.</li>
     </ul>
     
-    
-    
-    
-    <!-- Add your code block here -->
-    <pre><code>
+    <pre><code style="color:#0000FF">
+        #include "example_utils.hpp"
+        #include "oneapi/dnnl/dnnl.hpp"
+        #include "example_utils.hpp"
+        using namespace dnnl;
+        using namespace std;
+        
+        // Initialize engine
+        void fill(memory &mem, const memory::dims &adims) {
+            std::vector<float> array(product(adims));
+            for (size_t e = 0; e < array.size(); ++e) {
+                array[e] = e % 7 ? 1.0f : -1.0f;
+            }
+            write_to_dnnl_memory(array.data(), mem);
+        }
+        
+        // Find negative values
+        int find_negative(memory &mem, const memory::dims &adims) {
+            int negs = 0;
+            size_t nelems = product(adims);
+            std::vector<float> array(nelems);
+            read_from_dnnl_memory(array.data(), mem);
+            for (size_t e = 0; e < nelems; ++e)
+                negs += array[e] < 0.0f;
+            return negs;
+        }
+        
+        // Tutorial function
+        void cross_engine_reorder_tutorial() {
+            // Initialize engines
+            auto cpu_engine = engine(validate_engine_kind(engine::kind::cpu), 0);
+            auto gpu_engine = engine(validate_engine_kind(engine::kind::gpu), 0);
             
-            #include "example_utils.hpp"
-            #include "oneapi/dnnl/dnnl.hpp"
-            #include "example_utils.hpp"
-            using namespace dnnl;
-            using namespace std;
-            // [Prologue]
-            void fill(memory &mem, const memory::dims &adims) {
-                std::vector<float> array(product(adims));
-                for (size_t e = 0; e < array.size(); ++e) {
-                    array[e] = e % 7 ? 1.0f : -1.0f;
-                }
-                write_to_dnnl_memory(array.data(), mem);
-            }
-            int find_negative(memory &mem, const memory::dims &adims) {
-                int negs = 0;
-                size_t nelems = product(adims);
-                std::vector<float> array(nelems);
-                read_from_dnnl_memory(array.data(), mem);
-                for (size_t e = 0; e < nelems; ++e)
-                    negs += array[e] < 0.0f;
-                return negs;
-            }
-            void cross_engine_reorder_tutorial() {
-                // [Initialize engine]
-                auto cpu_engine = engine(validate_engine_kind(engine::kind::cpu), 0);
-                auto gpu_engine = engine(validate_engine_kind(engine::kind::gpu), 0);
-                // [Initialize engine]
-                // [Initialize stream]
-                auto stream_gpu = stream(gpu_engine, stream::flags::in_order);
-                // [Initialize stream]
-                //  [reorder cpu2gpu]
-                const auto tz = memory::dims {2, 16, 1, 1};
-                auto m_cpu
-                        = memory({{tz}, memory::data_type::f32, memory::format_tag::nchw},
-                                cpu_engine);
-                auto m_gpu
-                        = memory({{tz}, memory::data_type::f32, memory::format_tag::nchw},
-                                gpu_engine);
-                fill(m_cpu, tz);
-                auto r1 = reorder(m_cpu, m_gpu);
-                //  [reorder cpu2gpu]
-                // [Create a ReLU primitive]
-                //  ReLU op descriptor (uses a GPU memory as source memory.
-                //  no engine- or implementation-specific information)
-                auto relu_d = eltwise_forward::desc(prop_kind::forward,
-                        algorithm::eltwise_relu, m_gpu.get_desc(), 0.0f);
-                // ReLU primitive descriptor, which corresponds to a particular
-                // implementation in the library. Specify engine type for the ReLU
-                // primitive. Use a GPU engine here.
-                auto relu_pd = eltwise_forward::primitive_desc(relu_d, gpu_engine);
-                // ReLU primitive
-                auto relu = eltwise_forward(relu_pd);
-                // [Create a ReLU primitive]
-                //  [reorder gpu2cpu]
-                auto r2 = reorder(m_gpu, m_cpu);
-                //  [reorder gpu2cpu]
-                // [Execute primitives]
-                // wrap source data from CPU to GPU
-                r1.execute(stream_gpu, m_cpu, m_gpu);
-                // Execute ReLU on a GPU stream
-                relu.execute(stream_gpu, {{DNNL_ARG_SRC, m_gpu}, {DNNL_ARG_DST, m_gpu}});
-                // Get result data from GPU to CPU
-                r2.execute(stream_gpu, m_gpu, m_cpu);
-                stream_gpu.wait();
-                // [Execute primitives]
-                // [Check the results]
-                if (find_negative(m_cpu, tz) != 0)
-                    throw std::logic_error(
-                            "Unexpected output, find a negative value after the ReLU "
-                            "execution.");
-                // [Check the results]
-            }
-            int main(int argc, char **argv) {
-                return handle_example_errors({engine::kind::cpu, engine::kind::gpu},
-                        cross_engine_reorder_tutorial);
-            } 
-    </code></pre>
+            // Initialize GPU stream
+            auto stream_gpu = stream(gpu_engine, stream::flags::in_order);
+            
+            // Reorder from CPU to GPU
+            const auto tz = memory::dims {2, 16, 1, 1};
+            auto m_cpu = memory({{tz}, memory::data_type::f32, memory::format_tag::nchw}, cpu_engine);
+            auto m_gpu = memory({{tz}, memory::data_type::f32, memory::format_tag::nchw}, gpu_engine);
+            fill(m_cpu, tz);
+            auto r1 = reorder(m_cpu, m_gpu);
+            
+            // Create ReLU primitive
+            auto relu_d = eltwise_forward::desc(prop_kind::forward, algorithm::eltwise_relu, m_gpu.get_desc(), 0.0f);
+            auto relu_pd = eltwise_forward::primitive_desc(relu_d, gpu_engine);
+            auto relu = eltwise_forward(relu_pd);
+            
+            // Reorder from GPU to CPU
+            auto r2 = reorder(m_gpu, m_cpu);
+            
+            // Execute primitives
+            r1.execute(stream_gpu, m_cpu, m_gpu);
+            relu.execute(stream_gpu, {{DNNL_ARG_SRC, m_gpu}, {DNNL_ARG_DST, m_gpu}});
+            r2.execute(stream_gpu, m_gpu, m_cpu);
+            stream_gpu.wait();
+            
+            // Check the results
+            if (find_negative(m_cpu, tz) != 0)
+                throw std::logic_error("Unexpected output, find a negative value after the ReLU execution.");
+        }
+        
+        int main(int argc, char **argv) {
+            return handle_example_errors({engine::kind::cpu, engine::kind::gpu}, cross_engine_reorder_tutorial);
+        } 
+        </code></pre>
+        
    
     <p id="HCforDL"><h3><b>4 &nbsp; Heterogeneous Computing for Deep Learning</b></p></h3></p>
 
