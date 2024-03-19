@@ -240,6 +240,119 @@
         due to compatibility issues (with NVIDIA GPUs) but the oneAPI implementation on Intel CPUs outperformed native Caffe implementations for larger datasets.
         </p>
 
+    <b>3.4 &nbsp;Intel oneAPI (oneDNN) and SYCL Deep Learning example</b>
+    <p>In the code given below :-</p>
+    <ul>
+        <li><strong>Initialization of Engines and Streams:</strong>
+            <ul>
+                <li><strong>Engines Initialization:</strong> Both CPU and GPU engines are created to enable seamless operation across different computational devices.</li>
+                <li><strong>Stream Initialization:</strong> A GPU stream is created, facilitating asynchronous execution on GPUs, a characteristic feature of heterogeneous computing environments.</li>
+            </ul>
+        </li>
+        <li><strong>Wrapping Data into Memory Objects:</strong>
+            <ul>
+                <li><strong>Memory Objects Creation:</strong> Memory objects are created for both CPU and GPU memory, preparing the infrastructure for transferring and processing data across different memory spaces.</li>
+                <li><strong>Data Filling:</strong> The CPU memory is filled with data initially, demonstrating the preparation of data on the CPU for later transfer and processing on the GPU.</li>
+            </ul>
+        </li>
+        <li><strong>Reordering Data from CPU to GPU:</strong> The data is moved from CPU to GPU memory using the reorder primitive, facilitating efficient data movement between different memory spaces in a heterogeneous environment.</li>
+        <li><strong>Creating a ReLU Primitive for GPU:</strong>
+            <ul>
+                <li><strong>Operation Descriptor Initialization:</strong> An operation descriptor for the ReLU operation is initialized, specifying parameters such as the algorithm and memory descriptor for GPU memory.</li>
+                <li><strong>Primitive Descriptor Creation:</strong> A primitive descriptor is created for the ReLU operation on the GPU engine, representing a lightweight description of the algorithm implementation on the specific engine.</li>
+                <li><strong>Primitive Creation:</strong> Finally, the ReLU primitive is created, enabling the application of the ReLU operation on GPU-accelerated memory objects, optimized for execution on the GPU engine.</li>
+            </ul>
+        </li>
+        <li><strong>Getting Results from GPU Memory:</strong> After applying the ReLU operation on GPU memory, the results are retrieved back to CPU memory through another reorder operation.</li>
+        <li><strong>Executing Primitives:</strong> All primitives, including reorder and ReLU, are executed in sequence, ensuring a streamlined flow of data and operations between CPU and GPU memory spaces.</li>
+        <li><strong>Validation of Results:</strong> Finally, the computed results on CPU memory are validated to ensure correctness, crucial for ensuring the integrity of computations performed across different computational devices within the heterogeneous environment.</li>
+    </ul>
+    
+    
+    <!-- Add your code block here -->
+    <pre><code>
+            #include <iostream>
+            #include <stdexcept>
+            #include <vector>
+            // [Prologue]
+            #include "example_utils.hpp"
+            #include "oneapi/dnnl/dnnl.hpp"
+            #include "example_utils.hpp"
+            using namespace dnnl;
+            using namespace std;
+            // [Prologue]
+            void fill(memory &mem, const memory::dims &adims) {
+                std::vector<float> array(product(adims));
+                for (size_t e = 0; e < array.size(); ++e) {
+                    array[e] = e % 7 ? 1.0f : -1.0f;
+                }
+                write_to_dnnl_memory(array.data(), mem);
+            }
+            int find_negative(memory &mem, const memory::dims &adims) {
+                int negs = 0;
+                size_t nelems = product(adims);
+                std::vector<float> array(nelems);
+                read_from_dnnl_memory(array.data(), mem);
+                for (size_t e = 0; e < nelems; ++e)
+                    negs += array[e] < 0.0f;
+                return negs;
+            }
+            void cross_engine_reorder_tutorial() {
+                // [Initialize engine]
+                auto cpu_engine = engine(validate_engine_kind(engine::kind::cpu), 0);
+                auto gpu_engine = engine(validate_engine_kind(engine::kind::gpu), 0);
+                // [Initialize engine]
+                // [Initialize stream]
+                auto stream_gpu = stream(gpu_engine, stream::flags::in_order);
+                // [Initialize stream]
+                //  [reorder cpu2gpu]
+                const auto tz = memory::dims {2, 16, 1, 1};
+                auto m_cpu
+                        = memory({{tz}, memory::data_type::f32, memory::format_tag::nchw},
+                                cpu_engine);
+                auto m_gpu
+                        = memory({{tz}, memory::data_type::f32, memory::format_tag::nchw},
+                                gpu_engine);
+                fill(m_cpu, tz);
+                auto r1 = reorder(m_cpu, m_gpu);
+                //  [reorder cpu2gpu]
+                // [Create a ReLU primitive]
+                //  ReLU op descriptor (uses a GPU memory as source memory.
+                //  no engine- or implementation-specific information)
+                auto relu_d = eltwise_forward::desc(prop_kind::forward,
+                        algorithm::eltwise_relu, m_gpu.get_desc(), 0.0f);
+                // ReLU primitive descriptor, which corresponds to a particular
+                // implementation in the library. Specify engine type for the ReLU
+                // primitive. Use a GPU engine here.
+                auto relu_pd = eltwise_forward::primitive_desc(relu_d, gpu_engine);
+                // ReLU primitive
+                auto relu = eltwise_forward(relu_pd);
+                // [Create a ReLU primitive]
+                //  [reorder gpu2cpu]
+                auto r2 = reorder(m_gpu, m_cpu);
+                //  [reorder gpu2cpu]
+                // [Execute primitives]
+                // wrap source data from CPU to GPU
+                r1.execute(stream_gpu, m_cpu, m_gpu);
+                // Execute ReLU on a GPU stream
+                relu.execute(stream_gpu, {{DNNL_ARG_SRC, m_gpu}, {DNNL_ARG_DST, m_gpu}});
+                // Get result data from GPU to CPU
+                r2.execute(stream_gpu, m_gpu, m_cpu);
+                stream_gpu.wait();
+                // [Execute primitives]
+                // [Check the results]
+                if (find_negative(m_cpu, tz) != 0)
+                    throw std::logic_error(
+                            "Unexpected output, find a negative value after the ReLU "
+                            "execution.");
+                // [Check the results]
+            }
+            int main(int argc, char **argv) {
+                return handle_example_errors({engine::kind::cpu, engine::kind::gpu},
+                        cross_engine_reorder_tutorial);
+            } 
+    </code></pre>
+   
     <p id="HCforDL"><h3><b>4 &nbsp; Heterogeneous Computing for Deep Learning</b></p></h3></p>
 
         <p> &nbsp; &nbsp; &nbsp; &nbsp; Taking a closer look at heterogeneous computing for deep learning lets take a look at an example load distribution for a 
