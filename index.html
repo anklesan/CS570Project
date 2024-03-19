@@ -163,6 +163,11 @@
         programming, and enchances the execution performance of programming languages and models like CUDA and OpenCL. HSA enables direct GPU floating point 
         calculations without separate scheduling.
     </p>
+    <p> &nbsp; &nbsp; &nbsp; &nbsp; 
+        The rationale behind HSA is to simplify the task for programmers when offloading calculations to the GPU. Originally driven by AMD, this concept expanded to encompass processing units beyond GPUs, such as DSPs from different manufacturers. In a non-HSA system, depicted on the left, offloading calculations to the GPU involves discrete steps and data transfers between CPU and GPU memory. Conversely, in a HSA system leveraging HSA functionality, illustrated on the right, the process is streamlined with direct access to system memory for both CPU and GPU, reducing data transfer overhead and enhancing efficiency.        
+    </p>
+
+    
 
     <center><img src="ECE570_IMG6.png" alt="HSA" style="width:70%;height:70%;"></center>
     <p><center>Figure 2: Overview of Heterogeneous System Architecture. [10]</center></p>
