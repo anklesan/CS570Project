@@ -243,14 +243,15 @@
     <b>3.4 &nbsp;Intel oneAPI (oneDNN) and SYCL Deep Learning example</b>
     <p>In the code given below :-</p>
     <ul>
-        <li><strong>Engines and Streams Initialization:</strong> CPU and GPU engines are created for seamless operation across devices, along with a GPU stream for asynchronous execution. This occurs in the code where engines and streams are instantiated.</li>
-        <li><strong>Memory Objects Creation:</strong> Memory objects are established for CPU and GPU memory to prepare for data transfer and processing. This is done in the code where memory objects are created and initialized.</li>
-        <li><strong>Data Reordering:</strong> Data is efficiently moved from CPU to GPU memory using the reorder primitive. This operation is executed in the code where data is reordered from CPU to GPU memory.</li>
-        <li><strong>Creation of GPU ReLU Primitive:</strong> A ReLU primitive is configured for GPU execution, optimized for GPU acceleration. This is implemented in the code where the ReLU primitive is created specifically for GPU execution.</li>
-        <li><strong>Retrieving Results from GPU Memory:</strong> Results are fetched back to CPU memory after GPU processing. This is done in the code where results are retrieved from GPU memory back to CPU memory.</li>
-        <li><strong>Execution of Primitives:</strong> All primitives, including reorder and ReLU, are executed in sequence for streamlined computation. This takes place in the code where primitives are executed in sequence.</li>
-        <li><strong>Validation of Computed Results:</strong> The integrity of results is verified on CPU memory to ensure accuracy. This validation occurs in the code where computed results on CPU memory are compared for accuracy.</li>
+        <li><strong>Engines and Streams Initialization:</strong> CPU and GPU engines are created for seamless operation across devices, along with a GPU stream for asynchronous execution. This occurs in the code where the engine and stream objects are instantiated, specifying the CPU and GPU engines and creating a GPU stream for asynchronous execution.</li>
+        <li><strong>Memory Objects Creation:</strong> Memory objects are established for CPU and GPU memory to prepare for data transfer and processing. Memory objects are created and initialized for both CPU and GPU memory, utilizing functions such as `memory::memory` to allocate memory on the CPU and GPU.</li>
+        <li><strong>Data Reordering:</strong> Data is efficiently moved from CPU to GPU memory using the reorder primitive. The reorder primitive is utilized to transfer data from CPU to GPU memory, typically with a function call such as `reorder::execute`.</li>
+        <li><strong>Creation of GPU ReLU Primitive:</strong> A ReLU primitive is configured for GPU execution, optimized for GPU acceleration. The ReLU primitive is specifically created for execution on the GPU, often involving function calls such as `eltwise_forward::desc` and `eltwise_forward::primitive_desc`.</li>
+        <li><strong>Retrieving Results from GPU Memory:</strong> Results are fetched back to CPU memory after GPU processing. Data is retrieved from GPU memory back to CPU memory using another reorder operation, typically with a function call similar to `reorder::execute`.</li>
+        <li><strong>Execution of Primitives:</strong> All primitives, including reorder and ReLU, are executed in sequence for streamlined computation. Primitives are executed sequentially, often using function calls such as `primitive::execute` to perform the computations.</li>
+        <li><strong>Validation of Computed Results:</strong> The integrity of results is verified on CPU memory to ensure accuracy. Computed results on CPU memory are validated using comparison operations, typically occurring after the execution of primitives.</li>
     </ul>
+    
     
     
     
