@@ -243,30 +243,15 @@
     <b>3.4 &nbsp;Intel oneAPI (oneDNN) and SYCL Deep Learning example</b>
     <p>In the code given below :-</p>
     <ul>
-        <li><strong>Initialization of Engines and Streams:</strong>
-            <ul>
-                <li><strong>Engines Initialization:</strong> Both CPU and GPU engines are created to enable seamless operation across different computational devices.</li>
-                <li><strong>Stream Initialization:</strong> A GPU stream is created, facilitating asynchronous execution on GPUs, a characteristic feature of heterogeneous computing environments.</li>
-            </ul>
-        </li>
-        <li><strong>Wrapping Data into Memory Objects:</strong>
-            <ul>
-                <li><strong>Memory Objects Creation:</strong> Memory objects are created for both CPU and GPU memory, preparing the infrastructure for transferring and processing data across different memory spaces.</li>
-                <li><strong>Data Filling:</strong> The CPU memory is filled with data initially, demonstrating the preparation of data on the CPU for later transfer and processing on the GPU.</li>
-            </ul>
-        </li>
-        <li><strong>Reordering Data from CPU to GPU:</strong> The data is moved from CPU to GPU memory using the reorder primitive, facilitating efficient data movement between different memory spaces in a heterogeneous environment.</li>
-        <li><strong>Creating a ReLU Primitive for GPU:</strong>
-            <ul>
-                <li><strong>Operation Descriptor Initialization:</strong> An operation descriptor for the ReLU operation is initialized, specifying parameters such as the algorithm and memory descriptor for GPU memory.</li>
-                <li><strong>Primitive Descriptor Creation:</strong> A primitive descriptor is created for the ReLU operation on the GPU engine, representing a lightweight description of the algorithm implementation on the specific engine.</li>
-                <li><strong>Primitive Creation:</strong> Finally, the ReLU primitive is created, enabling the application of the ReLU operation on GPU-accelerated memory objects, optimized for execution on the GPU engine.</li>
-            </ul>
-        </li>
-        <li><strong>Getting Results from GPU Memory:</strong> After applying the ReLU operation on GPU memory, the results are retrieved back to CPU memory through another reorder operation.</li>
-        <li><strong>Executing Primitives:</strong> All primitives, including reorder and ReLU, are executed in sequence, ensuring a streamlined flow of data and operations between CPU and GPU memory spaces.</li>
-        <li><strong>Validation of Results:</strong> Finally, the computed results on CPU memory are validated to ensure correctness, crucial for ensuring the integrity of computations performed across different computational devices within the heterogeneous environment.</li>
+        <li><strong>Engines and Streams Initialization:</strong> CPU and GPU engines are created for seamless operation across devices, along with a GPU stream for asynchronous execution. This occurs in the code where engines and streams are instantiated.</li>
+        <li><strong>Memory Objects Creation:</strong> Memory objects are established for CPU and GPU memory to prepare for data transfer and processing. This is done in the code where memory objects are created and initialized.</li>
+        <li><strong>Data Reordering:</strong> Data is efficiently moved from CPU to GPU memory using the reorder primitive. This operation is executed in the code where data is reordered from CPU to GPU memory.</li>
+        <li><strong>Creation of GPU ReLU Primitive:</strong> A ReLU primitive is configured for GPU execution, optimized for GPU acceleration. This is implemented in the code where the ReLU primitive is created specifically for GPU execution.</li>
+        <li><strong>Retrieving Results from GPU Memory:</strong> Results are fetched back to CPU memory after GPU processing. This is done in the code where results are retrieved from GPU memory back to CPU memory.</li>
+        <li><strong>Execution of Primitives:</strong> All primitives, including reorder and ReLU, are executed in sequence for streamlined computation. This takes place in the code where primitives are executed in sequence.</li>
+        <li><strong>Validation of Computed Results:</strong> The integrity of results is verified on CPU memory to ensure accuracy. This validation occurs in the code where computed results on CPU memory are compared for accuracy.</li>
     </ul>
+    
     
     
     <!-- Add your code block here -->
