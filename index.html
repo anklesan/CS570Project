@@ -108,7 +108,7 @@
             by allowing the AI to assist in the scheduling or design of the system.  This topic was chosen due to the importance of heterogeneous 
             computing alongside an increase in applications of AI with heterogeneous computing. The survey was done to ensure that it included information 
             from both academic research and industry applications to gain a well-rounded understanding from differing perspectives. Overall, heterogeneous computing 
-            remains an important concept in computer architecture, one that is being rapidly adopted to be used with artificial intelligence.</p>
+            remains an important concept in computer architecture, one that is being rapidly adopted for use with artificial intelligence.</p>
     
 
     <p id="back"><h3><b>2 &nbsp; Background</b></p></h3></p>
@@ -228,23 +228,46 @@
     <center><img src="ECE570_IMG12.png" alt="HSA" style="width:40%;height:40%;"></center>
     <p><center>Figure 7: Overview of Intel oneAPI.</center></p>
 
+    <p> &nbsp; &nbsp; &nbsp; &nbsp; Martínez <i>et al.</i> [12] explored the potential of Intel's oneAPI as a unified programming model for machine learning 
+        applications with a focus on revamping the Caffe framework. They performed a comparative performance study for two crucial layers, softmax and convolution, 
+        between the original Caffe implementation (with CUDA) and oneAPI implementation on both CPU and GPU platforms. For the Softmax Layer the onAPI version showed a 7x 
+        speedup on Intel GPUs compared to the CPU baseline and a 1.75x improvement over NVIDIA A100 GPUs. For the Convolution Layer the GPU comparisons were limited 
+        due to compatibility issues (with NVIDIA GPUs) but the oneAPI implementation on Intel CPUs outperformed native Caffe implementations for larger datasets.
+        </p>
+
     <p id="HCforDL"><h3><b>4 &nbsp; Heterogeneous Computing for Deep Learning</b></p></h3></p>
 
-            <p> &nbsp; &nbsp; &nbsp; &nbsp; Malita <i>et al.</i> [3] explores the challenges and advancements in hardware acceleration for deep learning. It details the computational components of Deep Neural Networks (DNNs), 
-                reviews state-of-the-art hardware solutions including Intel's MIC, Nvidia's GPUs, and Google's TPUs. 
-            </p>
-            <p>Computational Components of DNNs: They outline the key computational components of Deep Neural Networks (DNNs), including fully connected layers, 
-                convolutional layers, pooling layers, and softmax layers. There is significant computational intensity of these components and they underscore 
-                the importance of efficient acceleration for optimal performance in deep learning tasks. By identifying and understanding these components, researchers and engineers can develop hardware architectures that specifically target the computational </p>
-            <p>State of the Art Hardware Solutions: They have reviewed various state-of-the-art hardware solutions commonly used for accelerating deep learning tasks. There is a discussion of various architectures such as Intel's Many Integrated Core (MIC) processors, Nvidia's Graphics Processing Units (GPUs), 
-                and Google's Tensor Processing Units (TPUs). This discussion covers performance characteristics, energy efficiency, and limitations of each architecture in the context of deep learning applications. They conclude that by examining the strengths and weaknesses of these hardware solutions, 
-                researchers can make informed decisions when selecting or designing hardware platforms for deep learning tasks.</p>
-            <p>Limitations of Specific ASICs like TPU: They delve into the limitations of specific Application-Specific Integrated Circuits (ASICs), focusing on Google's Tensor Processing Units (TPUs). While TPUs offer significant computational power, they lack the flexibility to efficiently 
-                support the diverse computational demands of different DNNs. The chapter [3] highlights issues related to flexibility, resource utilization, memory hierarchy, and architectural suitability. By understanding these limitations, researchers can explore alternative approaches or develop 
-                strategies to mitigate the challenges associated with specific ASICs like TPUs.</p>
-            <p>Conclusion and Future Directions: The authors summarize the key findings of the chapter and offer insights into potential avenues for future research and development. They emphasize that there is a need for innovative architectural designs that can adapt to the evolving landscape of deep learning while 
-                optimizing for performance and energy efficiency. The chapter also discusses emerging trends in hardware acceleration for deep learning, such as the integration of specialized hardware units for specific tasks and the exploration of novel memory hierarchy designs. 
-            </p>
+        <p> &nbsp; &nbsp; &nbsp; &nbsp; Taking a closer look at heterogeneous computing for deep learning lets take a look at an example load distribution for a 
+            Convolutional Neural Network (CNN) which is a popular image recognition/classification deep learning model. Certain tasks would be assigned to different 
+            cores such as the CPU would be assigned data management tasks like preprocessing the input data by decoding, normalizing, or augmenting. The CPU could also 
+            be assigned the task of orchestration therefore responsible for managing the training loop, preparing the batches or managing the epochs. Alongside those two 
+            tasks the CPU may also be assigned to update the parameters such as updating the weights after backpropagation.
+        </p>
+
+        <p> &nbsp; &nbsp; &nbsp; &nbsp; If we take a look at the GPU instead it would be assigned tasks such as layer processing, thus speeding up computation of CNN layers 
+            such as the convolutions or activations. The GPU may also be assigned to perform the backpropagation thus efficiently computing the gradients and enhancing the learning speed. 
+            Moving on to tasks assigned to the FPGA, these tasks might look something like optimizing operations such as executing custom, efficient CNN operations. The FPGA 
+            might also be assigned with the inference task, supporting the real-time model deployment with low latency. Lastly, the TPU could be assigned to matrix operations, 
+            specializing in large-scale matrix computations. The TPU might also be tasked with boosting the training or inference speeds. This is a good example of an overall load 
+            distribution and really showcases the benefits of heterogeneous computing for deep learning.
+        </p>
+
+        <p> &nbsp; &nbsp; &nbsp; &nbsp; Malita <i>et al.</i> [3] explores the challenges and advancements in hardware acceleration for deep learning. It details the computational components of Deep Neural Networks (DNNs), 
+            reviews state-of-the-art hardware solutions including Intel's MIC, Nvidia's GPUs, and Google's TPUs. 
+        </p>
+
+        <p><u>Computational Components of DNNs:</u> They outline the key computational components of Deep Neural Networks (DNNs), including fully connected layers, 
+            convolutional layers, pooling layers, and softmax layers. There is significant computational intensity of these components and they underscore 
+            the importance of efficient acceleration for optimal performance in deep learning tasks. By identifying and understanding these components, researchers and engineers can develop hardware architectures that specifically target the computational </p>
+        <p><u>State of the Art Hardware Solutions:</u> They have reviewed various state-of-the-art hardware solutions commonly used for accelerating deep learning tasks. There is a discussion of various architectures such as Intel's Many Integrated Core (MIC) processors, Nvidia's Graphics Processing Units (GPUs), 
+            and Google's Tensor Processing Units (TPUs). This discussion covers performance characteristics, energy efficiency, and limitations of each architecture in the context of deep learning applications. They conclude that by examining the strengths and weaknesses of these hardware solutions, 
+            researchers can make informed decisions when selecting or designing hardware platforms for deep learning tasks.</p>
+        <p><u>Limitations of Specific ASICs like TPU:</u> They delve into the limitations of specific Application-Specific Integrated Circuits (ASICs), focusing on Google's Tensor Processing Units (TPUs). While TPUs offer significant computational power, they lack the flexibility to efficiently 
+            support the diverse computational demands of different DNNs. The chapter [3] highlights issues related to flexibility, resource utilization, memory hierarchy, and architectural suitability. By understanding these limitations, researchers can explore alternative approaches or develop 
+            strategies to mitigate the challenges associated with specific ASICs like TPUs.</p>
+        <p><u>Conclusion and Future Directions:</u> The authors summarize the key findings of the chapter and offer insights into potential avenues for future research and development. They emphasize that there is a need for innovative architectural designs that can adapt to the evolving landscape of deep learning while 
+            optimizing for performance and energy efficiency. The chapter also discusses emerging trends in hardware acceleration for deep learning, such as the integration of specialized hardware units for specific tasks and the exploration of novel memory hierarchy designs. 
+        </p>
 
     <p id="AIforHC"><h3><b>5 &nbsp; Artificial Intelligence for Heterogeneous Computing</b></h3></p>
     <p>
