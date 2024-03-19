@@ -152,15 +152,15 @@
                 <li>NVIDIA's platform for general-purpose graphics processing unit (GPGPU) which was pivotal in AI and deep learning.</li>
             </ul>
         </li>
-        <li><b>OpenCL (Open Computing Language):</b> Open standard for cross-platform programming across CPUs, GPUs, and more, ensuring flexibiility and broad applicability.</li>
+        <li><b>OpenCL (Open Computing Language):</b> Open standard for cross-platform programming across CPUs, GPUs, and more, ensuring flexibility and broad applicability.</li>
         <li><b>TPU Architecture (Tensor Processing Unit):</b> Google's custom-designed processors optimized for TensorFlow operations, significantly accelerating deep learning computations. </li>
-        <li><b>ROCm (Radeon Open Compute):</b> AMD's open source GPU computing framework.</li>
+        <li><b>ROCm (Radeon Open Compute):</b> AMD's open-source GPU computing framework.</li>
         <li><b>Intel oneAPI:</b> A unified programming model by Intel to streamline development across CPUs, GPUs, field programmable gate arrays (FPGAs), and AI accelerators.</li>
     </ul></p>
     <b>3.1 &nbsp;HSA (Heterogeneous System Architecture)</b>
     <p> &nbsp; &nbsp; &nbsp; &nbsp; Heterogeneous System Architecture (HSA) integrates both central processing units (CPUs) and graphics processing units (GPUs) 
         for shared memory and tasks. HSA is led by the HSA foundation which includes both AMD and ARM. HSA reduces latency between compute devices, simplifies 
-        programming, and enchances the execution performance of programming languages and models like CUDA and OpenCL. HSA enables direct GPU floating point 
+        programming, and enhances the execution performance of programming languages and models like CUDA and OpenCL. HSA enables direct GPU floating point 
         calculations without separate scheduling.
     </p>
     <p> &nbsp; &nbsp; &nbsp; &nbsp; 
@@ -193,7 +193,7 @@
     <b>3.2.1 &nbsp;CUDA (Compute Unified Device Architecture)</b>
     <p> &nbsp; &nbsp; &nbsp; &nbsp; CUDA is NVIDIA's programming platform for GPGPUs that is designed for heterogeneous computing. CUDA is 
         designed so that some of the functions are run on the CPU while others are run on the GPU allowing for acceleration in the process. 
-        Programs are typically written in C or C++ with annotations for the GPU executution. A typical CUDA program flow can be seen in the 
+        Programs are typically written in C or C++ with annotations for the GPU execution. A typical CUDA program flow can be seen in the 
         figure below.
     </p>
 
@@ -225,9 +225,9 @@
     <p><center><b>DPC++ = C++ + SYCL + community extensions</b></center></p>
 
     <p> &nbsp; &nbsp; &nbsp; &nbsp; The workload categorization classifies workloads into scalar, vector, matrix, and spatial domains to optimize 
-        computing across different Intell processors. Currently, Intel is pitching oneAPI as a viable CUDA alternative and there is a growing trend 
+        computing across different Intel processors. Currently, Intel is pitching oneAPI as a viable CUDA alternative and there is a growing trend 
         of migrating to oneAPI for its promise of eliminating vendor lock-in and fostering a diverse computing environment. There are performance gains 
-        such that adoptors of oneAPI often report enhanced performance compared to previous implementations.
+        such that adopters of oneAPI often report enhanced performance compared to previous implementations.
     </p>
 
     <center><img src="ECE570_IMG12.png" alt="HSA" style="width:40%;height:40%;"></center>
@@ -235,13 +235,13 @@
 
     <p> &nbsp; &nbsp; &nbsp; &nbsp; Martínez <i>et al.</i> [12] explored the potential of Intel's oneAPI as a unified programming model for machine learning 
         applications with a focus on revamping the Caffe framework. They performed a comparative performance study for two crucial layers, softmax and convolution, 
-        between the original Caffe implementation (with CUDA) and oneAPI implementation on both CPU and GPU platforms. For the Softmax Layer the onAPI version showed a 7x 
+        between the original Caffe implementation (with CUDA) and oneAPI implementation on both CPU and GPU platforms. For the Softmax Layer the oneAPI version showed a 7x 
         speedup on Intel GPUs compared to the CPU baseline and a 1.75x improvement over NVIDIA A100 GPUs. For the Convolution Layer the GPU comparisons were limited 
         due to compatibility issues (with NVIDIA GPUs) but the oneAPI implementation on Intel CPUs outperformed native Caffe implementations for larger datasets.
         </p>
 
     <b>3.4 &nbsp;Intel oneAPI (oneDNN) and SYCL Deep Learning example</b>
-    <p>In the code given below :-</p>
+    <p>In the code given below:</p>
     <ul>
         <li><strong>Initialization of Engines and Streams:</strong>
             <ul>
@@ -448,7 +448,7 @@
     <p> &nbsp; &nbsp; &nbsp; &nbsp; There are many different approaches and implementations regarding heterogeneous computing specifically in an AI context and the expansive number
         of possibilities are evident through the sources included in this survey. Heterogeneous computing can be incredibly useful for AI just as AI can also be extremely helpful
         in the configuration or prediction of heterogeneous systems and their behavior. Throughout the course of the term, our team sought out information regarding the relationship 
-        between these two subjects. This report looked into not only the various implementations and possibilities but also the infrastructure and frameworks required to successully 
+        between these two subjects. This report looked into not only the various implementations and possibilities but also the infrastructure and frameworks required to successfully 
         implement some of those approaches. This brought about a discussion on the most effective of these infrastructure and what might be possible with future development.
         The result of this project provides good insight into heterogeneous computing in addition to the increasing use of artificial intelligence within the field as well as 
         requirements to successfully utilize the full capabilities. If our team were to continue to work on this project we would be interested in expanding our survey to learn more 
